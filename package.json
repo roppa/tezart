@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "tezart",
+  "description": "art on the Tezos blockchain",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
