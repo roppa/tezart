@@ -36,34 +36,52 @@
 
 <section>
   <form>
-    <label>
-      Author (artist public key)
-      <input type="text" name="author" bind:value={author} />
-    </label>
-    <label>
-      Copyright Holder (artist public key)
-      <input type="text" name="copyrightHolder" bind:value={copyrightHolder} />
-    </label>
-    <label>
-      Name
-      <input type="text" name="name" bind:value={name} />
-    </label>
-    <label>
-      Abstract
-      <textarea name="abstract" id="" cols="30" rows="10" />
-    </label>
-    <label>
-      Description
-      <textarea name="description" id="" cols="30" rows="10" />
-    </label>
-    <label>
-      Date created
-      <input type="date" name="dateCreated" />
-    </label>
-    <label>
-      Material
-      <input type="text" name="material" />
-    </label>
+    <div class="form-group">
+      <label for="author">Author (artist public key)</label>
+      <input
+        class="form-control"
+        type="text"
+        id="author"
+        name="author"
+        bind:value={author} />
+    </div>
+    <div class="form-group">
+      <label for="copyright-holder">Copyright Holder (artist public key)</label>
+      <input
+        type="text"
+        id="copyright-holder"
+        name="copyrightHolder"
+        bind:value={copyrightHolder} />
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        class="form-control"
+        type="text"
+        id="name"
+        name="name"
+        bind:value={name} />
+    </div>
+    <div class="form-group">
+      <label for="abstract">Abstract</label>
+      <textarea name="abstract" id="abstract" cols="30" rows="10" />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" cols="30" rows="10" />
+    </div>
+    <div class="form-group">
+      <label for="date-created">Date created</label>
+      <input
+        class="form-control"
+        type="date"
+        id="date-created"
+        name="dateCreated" />
+    </div>
+    <div class="form-group">
+      <label for="material">Material</label>
+      <input class="form-control" type="text" id="material" name="material" />
+    </div>
     <button on:click={submitArtwork}>Create artwork</button>
   </form>
 </section>

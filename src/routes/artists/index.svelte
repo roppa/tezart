@@ -62,35 +62,50 @@
   {#if !artistIpfsHash}
     <p>
       First you need to have a blockchain private key. If you do not have one,
-      you can generate one.
+      you can
+      <a href="/account">generate an account</a>
+      .
     </p>
     <form>
-      <label>
-        Private key
-        <input type="text" bind:value={pkey} />
-      </label>
-      <label>
-        Name
-        <input type="text" bind:value={name} required />
-      </label>
-
-      <p>
+      <div class="form-group">
+        <label for="private-key">Private key</label>
+        <input
+          class="form-control"
+          id="private-key"
+          type="text"
+          bind:value={pkey} />
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          bind:value={name}
+          required />
+      </div>
+      <p class="form-group">
         <input on:change={previewFile} type="file" />
         <img src={image} />
       </p>
-
-      <label>
-        Bio
-        <textarea cols="30" rows="10" bind:value={bio} required />
-      </label>
-      <label>
-        Date of birth
-        <input type="date" bind:value={birthDate} required />
-      </label>
-      <label>
-        Website
-        <input type="text" bind:value={url} />
-      </label>
+      <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea
+          id="bio"
+          class="form-control"
+          cols="30"
+          rows="10"
+          bind:value={bio}
+          required />
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of birth</label>
+        <input type="date" id="dob" bind:value={birthDate} required />
+      </div>
+      <div class="form-group">
+        <label for="website">Website</label>
+        <input type="text" id="website" class="form-control" bind:value={url} />
+      </div>
       <button on:click={submitProfile}>Create profile</button>
     </form>
   {:else}
