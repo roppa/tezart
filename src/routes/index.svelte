@@ -1,8 +1,11 @@
-<style>
+<style lang="scss">
+  @import "../../styles/theme.scss";
+
   h1,
   p {
     text-align: center;
     margin: 0 auto;
+    color: $main-color;
   }
 
   h1 {
@@ -18,8 +21,10 @@
     margin: 0 0 1em 0;
   }
 
-  p {
-    margin: 1em auto;
+  div {
+    p {
+      margin: 1em auto;
+    }
   }
 
   @media (min-width: 480px) {
