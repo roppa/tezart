@@ -9,7 +9,7 @@
   let bio = "";
   let birthDate = "";
   let url = "";
-  let image;
+  let image = "";
 
   let artistIpfsHash = "";
 
@@ -31,15 +31,13 @@
     );
   }
 
-  function previewFile(event) {
-    const preview = document.querySelector("img");
+  function loadFile(event) {
     const file = event.srcElement.files[0];
     const reader = new FileReader();
 
     reader.addEventListener(
       "load",
       function readerCallback() {
-        preview.src = reader.result;
         image = reader.result;
       },
       false
@@ -85,7 +83,7 @@
           required />
       </div>
       <p class="form-group">
-        <input on:change={previewFile} type="file" />
+        <input on:change={loadFile} type="file" />
         <img src={image} />
       </p>
       <div class="form-group">
