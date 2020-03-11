@@ -32,9 +32,8 @@
   <title>Artwork | Tezart</title>
 </svelte:head>
 
-<h1>Artwork</h1>
-
-<section>
+<section class="container">
+  <h1>Artwork</h1>
   <form>
     <div class="form-group">
       <label for="author">Author (artist public key)</label>

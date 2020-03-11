@@ -55,7 +55,7 @@
   <title>Artists | Tezart</title>
 </svelte:head>
 
-<section>
+<section class="container">
   <header>
     <h1>Artist Profile</h1>
   </header>

@@ -75,6 +75,9 @@ header {
 -------------------------------------------------- */
 .navbar {
   padding: 10px 0px 10px 0px;
+  margin-bottom: 0;
+
+  text-transform: uppercase;
 
   &.navbar-inverse {
     background: rgba(0, 0, 0, 0.4);

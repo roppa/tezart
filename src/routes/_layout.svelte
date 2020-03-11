@@ -7,13 +7,12 @@
 <style lang="scss" global>
   @import "../styles/global.scss";
   main {
-    overflow: auto;
     min-height: 50vh;
   }
 </style>
 
 <Nav {segment} />
-<main class="container">
+<main>
   <slot />
 </main>
 <Footer />
