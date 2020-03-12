@@ -14,8 +14,10 @@
   "dependencies": {
     "compression": "^1.7.1",
     "cors": "2.8.5",
+    "dotenv": "8.2.0",
     "ipfs-mini": "1.1.5",
     "polka": "next",
+    "short-uuid": "3.1.1",
     "sirv": "^0.4.0"
   },
   "devDependencies": {

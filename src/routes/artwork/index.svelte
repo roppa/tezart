@@ -1,9 +1,11 @@
 <script>
   import IPFS from "ipfs-mini";
+  import uuid from "short-uuid";
 
   const ipfs = new IPFS({ host: "localhost", port: 5002, protocol: "http" });
 
   export let tez;
+  let id = uuid.generate();
   let author = "";
   let copyrightHolder = "";
   let name = "";
@@ -20,6 +22,7 @@
     event.preventDefault();
     ipfs.addJSON(
       {
+        id,
         name,
         author,
         copyrightHolder,
