@@ -136,10 +136,11 @@
           bind:value={material} />
       </div>
 
-      <p class="form-group">
-        <input on:change={loadFile} type="file" />
+      <div class="form-group">
+        <label for="media-object">Artwork image</label>
+        <input on:change={loadFile} id="media-object" type="file" />
         <img src={mediaObject} width="50%" />
-      </p>
+      </div>
 
       <div class="form-group">
         <label for="name">Keywords</label>
