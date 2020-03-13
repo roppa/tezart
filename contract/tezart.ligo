@@ -2,23 +2,21 @@ type artist is address
 
 type artists is record [
   artist: artist;
-  profileIpfsAddress: string
+  ipfsProfileAddress: string
 ]
 
 type artwork is record [
+  id: string;
   artist: artist;
   owner : address;
-  artworkIpfsAddress: string;
-  licensed : bool;
-  licenceFee : tez;
-  licenses : map (address, tez);
+  ipfsArtworkAddress: string;
 ]
 
 type artists_storage is map (nat, artists)
 
 type return is list (operation) * artists_storage
 
-// get current address, hash, store as artist key and save profileIpfsAddress
+// get current address, hash, store as artist key and save ipfsProfileAddress
 // function register_artist (var artists_storage : artists_storage) : return is
 //   ((nil : list (operation)), artists_storage)
 

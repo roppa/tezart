@@ -31,4 +31,5 @@ entry transfer_ownership(string id, address newOwner) {
   assert(SENDER == artwork.owner, string 'no permission')
   artwork.owner = newOwner
   storage.artworks.push(input.id, artwork)
+  return artwork
 }
