@@ -11,6 +11,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 header" />
+      <img id="art" src="art.png" />
+
     </div>
   </div>
 </div>
