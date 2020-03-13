@@ -82,10 +82,11 @@
           bind:value={name}
           required />
       </div>
-      <p class="form-group">
+      <div class="form-group">
+        <label for="profile">Profile image</label>
         <input on:change={loadFile} type="file" />
         <img src={image} />
-      </p>
+      </div>
       <div class="form-group">
         <label for="bio">Bio</label>
         <textarea
