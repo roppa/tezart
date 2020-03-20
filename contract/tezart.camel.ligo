@@ -18,11 +18,11 @@ let registerArtist (store, ipfsHash : artists_storage * ipfsHash) : artists_stor
   Map.update(Tezos.self_address : artist) (Some (ipfsHash)) store
 
 let createArtwork (store, id, ihash : artwork_storage * artworkId * ipfsHash) : artwork_storage =
-  Map.update(id: artworkId) (Some (artwork: {
+  Map.update (id : artworkId) (Some ({
     artist = Tezos.self_address;
     owner = Tezos.self_address;
     ipfsArtworkAddress = ihash;
-  }) store
+  } : artwork)) store
 
 let main (p, artists: action * artists_storage) =
  let storage =
