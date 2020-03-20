@@ -14,14 +14,15 @@ type artwork_storage = (artworkId, artwork) map
 type action =
 | Register of ipfsHash
 
-let registerArtist (store, ipfsHash : artists_storage * ipfsHash) : artists_storage = Map.update(Tezos.self_address : artist) (Some (ipfsHash)) store
+let registerArtist (store, ipfsHash : artists_storage * ipfsHash) : artists_storage = 
+  Map.update(Tezos.self_address : artist) (Some (ipfsHash)) store
 
-let createArtwork (store, id, creator, owner, ihash : artwork_storage * artworkId * artist * address * ipfsHash) : artwork_storage =
-  Map.update(id: artworkId) (Some artwork: ({
-    artwork = creator;
-    owner = owner;
+let createArtwork (store, id, ihash : artwork_storage * artworkId * ipfsHash) : artwork_storage =
+  Map.update(id: artworkId) (Some (artwork: {
+    artist = Tezos.self_address;
+    owner = Tezos.self_address;
     ipfsArtworkAddress = ihash;
-  })) store
+  }) store
 
 let main (p, artists: action * artists_storage) =
  let storage =
