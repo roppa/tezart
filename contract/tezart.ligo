@@ -38,6 +38,7 @@ function transfer_ownership (var s: contract_storage; var id: artworkId; var new
 type action is
 | UpdateArtist of ipfsHash
 | CreateArtwork of (artworkId * ipfsHash)
+| Transfer of (artworkId * address)
 
 function main (const p : action ; const s : contract_storage) :
   (list(operation) * contract_storage) is
@@ -45,4 +46,5 @@ function main (const p : action ; const s : contract_storage) :
   case p of
   | UpdateArtist(n) -> update_artist(s, n)
   | CreateArtwork(n) -> create_artwork(s, n.0, n.1)
+  | Transfer(n) -> transfer_ownership(s, n.0, n.1)
   end)
