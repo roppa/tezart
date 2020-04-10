@@ -25,6 +25,16 @@ function create_artwork (var s: contract_storage; var id: artworkId; var artwork
   s.artwork[id] := record [artist = Tezos.sender; owner = Tezos.sender; ipfsArtworkAddress = artworkHash]
 } with s
 
+function transfer_ownership (var s: contract_storage; var id: artworkId; var newOwner: address) : contract_storage is 
+  begin 
+    if Tezos.sender = newOwner then skip;
+    else block {
+      // need to patch
+      // s.artwork[id]:= record [artist = Tezos.sender; owner = newOwner; ipfsArtworkAddress = artworkHash]
+      skip;
+    }
+  end with s
+
 type action is
 | UpdateArtist of ipfsHash
 | CreateArtwork of (artworkId * ipfsHash)
