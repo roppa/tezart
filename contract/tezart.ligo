@@ -1,36 +1,38 @@
+type ipfsHash is string
 type artist is address
-type ipfsProfileAddress is string
-
-type artists is map (artist, ipfsProfileAddress)
-const artists_storage : artists = map []
+type artworkId is string
+type id is string
 
 type artwork is record [
-  id: string;
   artist: artist;
   owner : address;
-  ipfsArtworkAddress: string;
+  ipfsArtworkAddress: ipfsHash;
 ]
 
-// get current address, hash, store as artist key and save ipfsProfileAddress
-function register_artist (const profile: ipfsProfileAddress) : ipfsProfileAddress is block {
-  artists_storage(Tezos.sender, profile)
-} with profile
+type artists is map (artist, ipfsHash)
+type artworks is map (artworkId, artwork)
 
+type contract_storage is record [
+  artists: artists;
+  artwork: artworks;
+]
 
-// type return is list (operation) * artists_storage
+function update_artist (var s: contract_storage; var profile: ipfsHash) : contract_storage is block {
+  s.artists[(Tezos.sender: artist)] := profile
+} with s
 
+function create_artwork (var s: contract_storage; var id: artworkId; var artworkHash: ipfsHash) : contract_storage is block {
+  s.artwork[id] := record [artist = Tezos.sender; owner = Tezos.sender; ipfsArtworkAddress = artworkHash]
+} with s
 
-// get current address, hash, find artist, update profileIpfsHash
-// function update_artist (var artists_storage : artists_storage) : return is
-//   ((nil : list (operation)), artisst_storage)
+type action is
+| UpdateArtist of ipfsHash
+| CreateArtwork of (artworkId * ipfsHash)
 
-// upload images, meta data etc to ipfs, get hash, then save (invoking address should have been registered as artist)
-// function registerArtwork ()
-
-// owner of artwork can set ownership to tez address
-// function transferOwnership ()
-
-// address should be saved in artwork, off chain encryption of assets and reencryption with users public key, then stored on ipfs
-// function purchaseRights ()
-
-
+function main (const p : action ; const s : contract_storage) :
+  (list(operation) * contract_storage) is
+  block { skip } with ((nil : list(operation)),
+  case p of
+  | UpdateArtist(n) -> update_artist(s, n)
+  | CreateArtwork(n) -> create_artwork(s, n.0, n.1)
+  end)
