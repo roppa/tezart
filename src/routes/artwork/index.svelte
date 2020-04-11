@@ -15,6 +15,8 @@
   let material = "";
   let mediaObject = "";
   let keywords = "";
+  let licencePrice = 0;
+  let privateKey = "";
 
   let artworkIpfsHash = "";
 
@@ -31,7 +33,8 @@
         dateCreated,
         material,
         mediaObject,
-        keywords
+        keywords,
+        licencePrice
       },
       (error, hash) => {
         if (!error) {
@@ -74,10 +77,11 @@
   <h1>Artwork</h1>
 
   {#if !artworkIpfsHash}
-    <form>
+    <form on:submit={submitArtwork}>
       <div class="form-group">
         <label for="author">Author (artist public key)</label>
         <input
+          required
           class="form-control"
           type="text"
           id="author"
@@ -89,6 +93,7 @@
           Copyright Holder (artist public key)
         </label>
         <input
+          required
           class="form-control"
           type="text"
           id="copyright-holder"
@@ -98,6 +103,7 @@
       <div class="form-group">
         <label for="name">Artwork name</label>
         <input
+          required
           class="form-control"
           type="text"
           id="name"
@@ -107,6 +113,7 @@
       <div class="form-group">
         <label for="date-created">Date created</label>
         <input
+          required
           class="form-control"
           type="date"
           id="date-created"
@@ -115,7 +122,12 @@
 
       <div class="form-group">
         <label for="abstract">Abstract</label>
-        <textarea class="form-control" rows="3" name="abstract" id="abstract" />
+        <textarea
+          class="form-control"
+          rows="3"
+          name="abstract"
+          id="abstract"
+          required />
       </div>
       <div class="form-group">
         <label for="description">Description</label>
@@ -123,12 +135,14 @@
           class="form-control"
           rows="3"
           name="description"
-          id="description" />
+          id="description"
+          required />
       </div>
 
       <div class="form-group">
         <label for="name">Material (e.g. oil on canvas board)</label>
         <input
+          required
           class="form-control"
           type="text"
           id="material"
@@ -143,6 +157,17 @@
       </div>
 
       <div class="form-group">
+        <label for="price">Licence price (in Tez)</label>
+        <p>If 0, the art will be unencrypted and free to use</p>
+        <input
+          type="text"
+          class="form-control"
+          id="licence-price"
+          placeholder="0"
+          bind:value={licencePrice} />
+      </div>
+
+      <div class="form-group">
         <label for="name">Keywords</label>
         <input
           class="form-control"
@@ -151,7 +176,17 @@
           name="keywords"
           bind:value={keywords} />
       </div>
-      <button on:click={submitArtwork}>Create artwork</button>
+
+      <div class="form-group">
+        <label for="private-key">Private Key (identity verification)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="private-key"
+          bind:value={privateKey} />
+      </div>
+
+      <button disabled={!privateKey ? 'disabled' : ''}>Create artwork</button>
     </form>
   {:else}{artworkIpfsHash}{/if}
 </section>

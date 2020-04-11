@@ -2,6 +2,7 @@ type ipfsHash is string
 type artist is address
 type artworkId is string
 type id is string
+type price is nat
 
 type artwork is record [
   artist: artist;
@@ -34,6 +35,11 @@ function transfer_ownership (var s: contract_storage; var id: artworkId; var new
       skip;
     }
   end with s
+
+function purchase_rights (var s: contract_storage; var id: artworkId; var cost : price) : contract_storage is
+  block {
+    skip;
+  } with s
 
 type action is
 | UpdateArtist of ipfsHash
