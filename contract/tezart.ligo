@@ -19,20 +19,21 @@ type contract_storage is record [
 ]
 
 function update_artist (var s: contract_storage; var profile: ipfsHash) : contract_storage is block {
-  s.artists[(Tezos.sender: artist)] := profile
+  s.artists[(sender: artist)] := profile
 } with s
 
 function create_artwork (var s: contract_storage; var id: artworkId; var artworkHash: ipfsHash) : contract_storage is block {
-  s.artwork[id] := record [artist = Tezos.sender; owner = Tezos.sender; ipfsArtworkAddress = artworkHash]
+  s.artwork[id] := record [artist = sender; owner = sender; ipfsArtworkAddress = artworkHash]
 } with s
 
 function transfer_ownership (var s: contract_storage; var id: artworkId; var newOwner: address) : contract_storage is 
   begin 
-    if Tezos.sender = newOwner then skip;
+    if sender = newOwner then skip;
     else block {
-      // need to patch
-      // s.artwork[id]:= record [artist = Tezos.sender; owner = newOwner; ipfsArtworkAddress = artworkHash]
-      skip;
+      case s.artwork[id] of
+        None -> skip
+        | Some (existing_artwork) -> patch existing_artwork with record [owner = newOwner]
+      end
     }
   end with s
 
